@@ -7,7 +7,8 @@
     "preview": "vite preview",
     "prepare": "husky install",
     "prettier": "prettier . -w",
-    "lint": "eslint"
+    "lint": "eslint",
+    "develop": "vercel"
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.1.1",
@@ -16,10 +17,12 @@
     "@emotion/styled": "^11",
     "@supabase/supabase-js": "^1.28.5",
     "es5-ext": "^0.10.53",
+    "focus-visible": "^5.2.0",
     "framer-motion": "^4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-icons": "^4.3.1"
+    "react-icons": "^4.3.1",
+    "vercel": "^23.1.2"
   },
   "devDependencies": {
     "@types/next": "^9.0.0",

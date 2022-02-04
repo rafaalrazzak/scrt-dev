@@ -44,8 +44,7 @@ const Layout: FC = () => {
         </Text>
         <SubmitForm refresher={refreshData} />
         <Divider orientation="horizontal" w="full" my="8" />
-        <Container centerContent align="strech" p="0">
-          <Stack spacing="6" direction="column-reverse">
+        <Stack spacing="6" direction="column-reverse">
             {data ? (
               data.map(x => (
                 <Card message={x.message} bgColor={bgText} />
@@ -54,7 +53,6 @@ const Layout: FC = () => {
               <Text>Loading..</Text>
             )}
           </Stack>
-        </Container>
         <Footer />
       </Container>
     </>

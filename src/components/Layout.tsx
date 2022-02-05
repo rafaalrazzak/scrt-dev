@@ -20,7 +20,7 @@ const Layout: FC = () => {
   }, [])
 
   const refreshData = () => {
-    Fetcher('messages').then((x: any) => setData(x))
+    Fetcher('message').then((x: any) => setData(x))
   }
   return (
     <>
@@ -47,7 +47,7 @@ const Layout: FC = () => {
         <Stack spacing="6" direction="column-reverse">
           {data ? (
             data.map(x => (
-              <Card message={x.message} bgColor={bgText} />
+              <Card message={x} bgColor={bgText} />
             ))
           ) : (
             <Text>Loading..</Text>

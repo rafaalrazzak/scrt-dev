@@ -3,18 +3,21 @@ import {
   Flex,
   Text,
   Icon,
-  Link,
   useColorModeValue,
   useDisclosure,
   Collapse,
-  Stack
-} from '@chakra-ui/react'
-import { ChevronDownIcon } from '@chakra-ui/icons'
-import SubmitForm from './SubmitForm'
-
+  Stack,
+} from "@chakra-ui/react";
+import { ChevronDownIcon } from "@chakra-ui/icons";
+import SubmitForm from "./SubmitForm";
+import { useState } from 'react'
 export default function Comments() {
-  const { isOpen, onToggle } = useDisclosure()
-  const bgText = useColorModeValue('gray.50', 'gray.700')
+  const [data, setData] = useState<any[]>()
+  const refreshData = () => {
+    Fetcher('messages').then((x: any) => setData(x))
+  }
+  const { isOpen, onToggle } = useDisclosure();
+  const bgText = useColorModeValue("gray.50", "gray.700");
   const AllComments = () => {
     return (
       <>
@@ -24,61 +27,62 @@ export default function Comments() {
         <Box
           maxW="xl"
           boxShadow="xs"
-          w="full"
           p="3"
+          w="full"
           rounded="xl"
-          backgroundColor="gray.800"
+          backgroundColor={useColorModeValue("gray.600", "gray.800")}
         >
-          <Text backgroundColor="gray.800" color={useColorModeValue('gray.600', 'gray.200')}>Hello</Text>
+          <Text color={useColorModeValue("gray.200", "gray.100")}>Hello</Text>
         </Box>
       </>
-    )
-  }
+    );
+  };
   return (
     <>
-      <Stack spacing={4} onClick={onToggle}>
-        <Flex
-          p={2}
-          as={Link}
-          justify={'space-between'}
-          align={'center'}
-          _hover={{
-            textDecoration: 'none'
-          }}
-        >
-          <Text
-            fontFamily="Poppins"
-            color={useColorModeValue('gray.600', 'gray.200')}
+      <Stack spacing={4}>
+        <Box maxW="xl" w="full">
+          <Flex p={2} justify={"space-between"} align={"center"}>
+            <Text
+              fontFamily="Poppins"
+              _hover={{
+                cursor: "none",
+                textDecoration: "none",
+              }}
+            >
+              Comment
+            </Text>
+            {Comment && (
+              <Icon
+                onClick={onToggle}
+                as={ChevronDownIcon}
+                transition={"all .25s ease-in-out"}
+                transform={isOpen ? "rotate(180deg)" : ""}
+                w={6}
+                h={6}
+                _hover={{
+                  cursor: "pointer",
+                }}
+              />
+            )}
+          </Flex>
+          <Collapse
+            in={isOpen}
+            animateOpacity
+            style={{ marginTop: "0!important" }}
           >
-            Comment
-          </Text>
-          {Comment && (
-            <Icon
-              as={ChevronDownIcon}
-              transition={'all .25s ease-in-out'}
-              transform={isOpen ? 'rotate(180deg)' : ''}
-              w={6}
-              h={6}
-            />
-          )}
-        </Flex>
-        <Collapse
-          in={isOpen}
-          animateOpacity
-          style={{ marginTop: '0!important' }}
-        >
-          <Stack
-            p={2}
-            borderLeft={1}
-            borderStyle={'solid'}
-            borderColor={useColorModeValue('gray.200', 'gray.700')}
-            align={'start'}
-          >
-            <SubmitForm refresher={'hello'} />
-            <AllComments />
-          </Stack>
-        </Collapse>
+            <Stack
+              p={2}
+              borderLeft={1}
+              borderStyle={"solid"}
+              borderColor={useColorModeValue("gray.200", "gray.700")}
+              align={"start"}
+            >
+              <SubmitForm refresher={refreshData} to="comment" dataMsg={data} />
+              <AllComments />
+            </Stack>
+          </Collapse>
+        </Box>
       </Stack>
     </>
-  )
+  );
 }

@@ -20,7 +20,7 @@ const Layout: FC = () => {
   }, [])
 
   const refreshData = () => {
-    Fetcher().then((x: any) => setData(x))
+    Fetcher('messages').then((x: any) => setData(x))
   }
   return (
     <>
@@ -42,17 +42,17 @@ const Layout: FC = () => {
         <Text fontFamily="Poppins" fontSize="md" my="4">
           Message
         </Text>
-        <SubmitForm refresher={refreshData} />
+        <SubmitForm refresher={refreshData} to="message" dataMsg={data} />
         <Divider orientation="horizontal" w="full" my="8" />
         <Stack spacing="6" direction="column-reverse">
-            {data ? (
-              data.map(x => (
-                <Card message={x.message} bgColor={bgText} />
-              ))
-            ) : (
-              <Text>Loading..</Text>
-            )}
-          </Stack>
+          {data ? (
+            data.map(x => (
+              <Card message={x.message} bgColor={bgText} />
+            ))
+          ) : (
+            <Text>Loading..</Text>
+          )}
+        </Stack>
         <Footer />
       </Container>
     </>

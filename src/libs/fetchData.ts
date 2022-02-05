@@ -5,10 +5,10 @@ const supabase: SupabaseClient = createClient(
   String(import.meta.env['VITE_SUPABASE_ANON']) || ''
 )
 
-const Fetcher = async () => {
+const Fetcher = async (is: any) => {
   const { data, error } = await supabase
-  .from('secret_message')
-  .select()
+    .from('secret_message')
+    .select(is)
   if (error) {
     console.log(error)
   }
@@ -16,10 +16,10 @@ const Fetcher = async () => {
   return !error ? data : null
 }
 
-const SubmitPost = async (message: string) => {
+const SubmitPost = async (to: string, message: string) => {
   const { data, error } = await supabase
     .from('secret_message')
-    .insert([{ message: message }])
+    .insert([{ to: message }])
 
   if (error) {
     console.log(error)

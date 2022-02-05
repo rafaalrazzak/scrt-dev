@@ -13,14 +13,14 @@ import {
 import { SubmitPost } from '../libs/fetchData'
 import { IoSend } from 'react-icons/io5'
 
-const SubmitForm: FC<{ refresher: any }> = ({ refresher }) => {
+const SubmitForm: FC<{ refresher: any, to: any, dataMsg: any }> = ({ refresher, to, dataMsg }) => {
   const [msg, setMsg] = useState('')
   const [disabled, setDisabled] = useState(true)
   const clearState = () => {
     setMsg('')
   }
   const SubmitFunc = async () => {
-    let data = await SubmitPost(msg)
+    let data = await SubmitPost('messages', dataMsg)
 
     if ((data = '' || null)) {
       return

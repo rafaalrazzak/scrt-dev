@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import SubmitForm from "./SubmitForm";
+import Fetcher from '.././libs/fetchData'
 import { useState } from 'react'
 export default function Comments() {
   const [data, setData] = useState<any[]>()

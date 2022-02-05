@@ -32,8 +32,14 @@ export default function Comments() {
           w="full"
           rounded="xl"
           backgroundColor={useColorModeValue("gray.600", "gray.800")}
-        >
-          <Text color={useColorModeValue("gray.200", "gray.100")}>Hello</Text>
+        >{data ? (
+          data.map(x => (
+            <Text color={useColorModeValue("gray.200", "gray.100")}>{x.comment}</Text>
+          ))
+        ) : (
+          <Text>Loading..</Text>
+        )}
+
         </Box>
       </>
     );

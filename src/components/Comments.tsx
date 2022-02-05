@@ -15,7 +15,7 @@ import { useState } from 'react'
 export default function Comments() {
   const [data, setData] = useState<any[]>()
   const refreshData = () => {
-    Fetcher('messages').then((x: any) => setData(x))
+    Fetcher('comment').then((x: any) => setData(x))
   }
   const { isOpen, onToggle } = useDisclosure();
   const bgText = useColorModeValue("gray.50", "gray.700");
@@ -34,7 +34,7 @@ export default function Comments() {
           backgroundColor={useColorModeValue("gray.600", "gray.800")}
         >{data ? (
           data.map(x => (
-            <Text color={useColorModeValue("gray.200", "gray.100")}>{x.comment}</Text>
+            <Text color={useColorModeValue("gray.200", "gray.100")}>{x}</Text>
           ))
         ) : (
           <Text>Loading..</Text>

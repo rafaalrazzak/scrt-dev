@@ -5,7 +5,7 @@ const supabase: SupabaseClient = createClient(
   String(import.meta.env['VITE_SUPABASE_ANON']) || ''
 )
 
-const Fetcher = async (is: any) => {
+const Fetcher = async (is: string) => {
   const { data, error } = await supabase
     .from('secret_message')
     .select(is)

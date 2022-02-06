@@ -8,7 +8,7 @@ const supabase: SupabaseClient = createClient(
 const Fetcher = async (is: string) => {
   const { data, error } = await supabase
     .from('secret_message')
-    .select(is)
+    .select()
   if (error) {
     console.log(error)
   }
@@ -16,7 +16,7 @@ const Fetcher = async (is: string) => {
   return !error ? data : null
 }
 
-const SubmitPost = async (to: string, message: string) => {
+const SubmitPost = async ( _to: string, message: string) => {
   const { data, error } = await supabase
     .from('secret_message')
     .insert([{ to: message }])

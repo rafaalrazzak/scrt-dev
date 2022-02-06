@@ -22,6 +22,7 @@ const Layout: FC = () => {
   const refreshData = () => {
     Fetcher('message').then((x: any) => setData(x))
   }
+
   return (
     <>
       <Container maxW="xl" my="4">
@@ -46,9 +47,7 @@ const Layout: FC = () => {
         <Divider orientation="horizontal" w="full" my="8" />
         <Stack spacing="6" direction="column-reverse">
           {data ? (
-            data.map(x => (
-              <Card message={x} bgColor={bgText} />
-            ))
+            data.map(x => <Card id={x.id} message={x} bgColor={bgText} />)
           ) : (
             <Text>Loading..</Text>
           )}

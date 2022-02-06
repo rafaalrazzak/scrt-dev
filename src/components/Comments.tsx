@@ -6,10 +6,10 @@ import {
   useColorModeValue,
   useDisclosure,
   Collapse,
-  Stack,
-} from "@chakra-ui/react";
-import { ChevronDownIcon } from "@chakra-ui/icons";
-import SubmitForm from "./SubmitForm";
+  Stack
+} from '@chakra-ui/react'
+import { ChevronDownIcon } from '@chakra-ui/icons'
+import SubmitForm from './SubmitForm'
 import Fetcher from '.././libs/fetchData'
 import { useState } from 'react'
 export default function Comments() {
@@ -17,8 +17,8 @@ export default function Comments() {
   const refreshData = () => {
     Fetcher('comment').then((x: any) => setData(x))
   }
-  const { isOpen, onToggle } = useDisclosure();
-  const bgText = useColorModeValue("gray.50", "gray.700");
+  const { isOpen, onToggle } = useDisclosure()
+  const bgText = useColorModeValue('gray.50', 'gray.700')
   const AllComments = () => {
     return (
       <>
@@ -31,29 +31,29 @@ export default function Comments() {
           p="3"
           w="full"
           rounded="xl"
-          backgroundColor={useColorModeValue("gray.600", "gray.800")}
-        >{data ? (
-          data.map(x => (
-            <Text color={useColorModeValue("gray.200", "gray.100")}>{x}</Text>
-          ))
-        ) : (
-          <Text>Loading..</Text>
-        )}
-
+          backgroundColor={useColorModeValue('gray.600', 'gray.800')}
+        >
+          {data ? (
+            data.map(x => (
+              <Text color={useColorModeValue('gray.200', 'gray.100')}>{x}</Text>
+            ))
+          ) : (
+            <Text>Loading..</Text>
+          )}
         </Box>
       </>
-    );
-  };
+    )
+  }
   return (
     <>
       <Stack spacing={4}>
         <Box maxW="xl" w="full">
-          <Flex p={2} justify={"space-between"} align={"center"}>
+          <Flex p={2} justify={'space-between'} align={'center'}>
             <Text
               fontFamily="Poppins"
               _hover={{
-                cursor: "none",
-                textDecoration: "none",
+                cursor: 'none',
+                textDecoration: 'none'
               }}
             >
               Comment
@@ -62,12 +62,12 @@ export default function Comments() {
               <Icon
                 onClick={onToggle}
                 as={ChevronDownIcon}
-                transition={"all .25s ease-in-out"}
-                transform={isOpen ? "rotate(180deg)" : ""}
+                transition={'all .25s ease-in-out'}
+                transform={isOpen ? 'rotate(180deg)' : ''}
                 w={6}
                 h={6}
                 _hover={{
-                  cursor: "pointer",
+                  cursor: 'pointer'
                 }}
               />
             )}
@@ -75,14 +75,14 @@ export default function Comments() {
           <Collapse
             in={isOpen}
             animateOpacity
-            style={{ marginTop: "0!important" }}
+            style={{ marginTop: '0!important' }}
           >
             <Stack
               p={2}
               borderLeft={1}
-              borderStyle={"solid"}
-              borderColor={useColorModeValue("gray.200", "gray.700")}
-              align={"start"}
+              borderStyle={'solid'}
+              borderColor={useColorModeValue('gray.200', 'gray.700')}
+              align={'start'}
             >
               <SubmitForm refresher={refreshData} to="comment" dataMsg={data} />
               <AllComments />
@@ -91,5 +91,5 @@ export default function Comments() {
         </Box>
       </Stack>
     </>
-  );
+  )
 }

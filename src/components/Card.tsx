@@ -1,9 +1,10 @@
 import { FC } from 'react'
 import { Box, Stack, Text, Divider } from '@chakra-ui/react'
 import Comments from './Comments'
-const Card: FC<{ message: string; bgColor: any }> = ({
+const Card: FC<{ message: string; bgColor: any; id: number }> = ({
   message,
-  bgColor
+  bgColor,
+  id
 }) => {
   return (
     <>
@@ -14,7 +15,7 @@ const Card: FC<{ message: string; bgColor: any }> = ({
         p="4"
         rounded="xl"
         backgroundColor={bgColor}
-        
+        key={id.toString()}
       >
         <Stack direction="column">
           <Text fontFamily="Poppins" fontSize="md" p="2">
